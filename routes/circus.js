@@ -10,6 +10,27 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 
+router.get('/api/circus', (req, res) => {
+  if (req.query.circus) {
+    const { circus } = req.query;
+
+    connection.query('SELECT * FROM circus WHERE name LIKE ?', circus, (err, results) => {
+      if (err) {
+        res.status(500).send('Erreur lors de l\'import de données');
+      } else {
+        res.json(results);
+      }
+    });
+  } else {
+    connection.query('SELECT * FROM circus', (err, results) => {
+      if (err) {
+        res.status(500).send('Erreur lors de l\'import de données');
+      } else {
+        res.json(results);
+      }
+    });
+  }
+});
 
 router.post('/api/circus', (req, res) => {
   const formData = req.body;
