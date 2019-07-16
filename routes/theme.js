@@ -10,7 +10,7 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 
-router.get('/api/theme', (req, res) => {
+router.get('/theme', (req, res) => {
   if (req.query.theme) {
     const { theme } = req.query;
 
@@ -32,7 +32,7 @@ router.get('/api/theme', (req, res) => {
   }
 });
 
-router.post('/api/theme', (req, res) => {
+router.post('/theme', (req, res) => {
   const formData = req.body;
   connection.query('INSERT INTO theme SET ?', formData, (err) => {
     if (err) {

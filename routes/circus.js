@@ -10,10 +10,9 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 
-router.get('/api/circus', (req, res) => {
+router.get('/circus', (req, res) => {
   if (req.query.circus) {
     const { circus } = req.query;
-
     connection.query('SELECT * FROM circus WHERE name LIKE ?', circus, (err, results) => {
       if (err) {
         res.status(500).send('Erreur lors de l\'import de données');
@@ -32,7 +31,7 @@ router.get('/api/circus', (req, res) => {
   }
 });
 
-router.post('/api/circus', (req, res) => {
+router.post('/circus', (req, res) => {
   const formData = req.body;
   connection.query('INSERT INTO circus SET ?', formData, (err) => {
     if (err) {
