@@ -3,6 +3,8 @@ const express = require('express');
 const httpErrors = require('http-errors');
 const logger = require('morgan');
 const path = require('path');
+const circus = require('./routes/circus');
+const theme = require('./routes/theme');
 
 const indexRouter = require('./routes/index');
 
@@ -16,6 +18,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/', circus);
+app.use('/', theme);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
