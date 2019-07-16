@@ -43,4 +43,28 @@ router.post('/circus', (req, res) => {
   });
 });
 
+router.put('/circus', (req, res) => {
+  const idPeople = req.query.id;
+  const formData = req.body;
+  connection.query('UPDATE circus SET ? WHERE id = ?', idPeople, [formData, idPeople], (err) => {
+    if (err) {
+      res.status(500).send('Erreur lors de la modification');
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+router.delete('/circus', (req, res) => {
+  const { id } = req.query;
+  connection.query('DELETE FROM circus WHERE id=?', [id], (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send('Erreur lors de la suppression');
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
 module.exports = router;

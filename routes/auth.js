@@ -34,10 +34,9 @@ passport.use('local', new LocalStrategy({
   }
 }));
 
-// Jason Web Token
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'lc_passport',
+  secretOrKey: 'WILDCIRCUS',
 }, (jwtPayload, cb) => cb(null, jwtPayload)));
 
 router.post('/signup', (req, res) => {
@@ -64,7 +63,7 @@ router.post('/signin', (req, res) => {
     if (!user) {
       return res.sendStatus(401);
     }
-    const token = jwt.sign(user, 'lc_passport');
+    const token = jwt.sign(user, 'WILDCIRCUS');
     return res.json({ name: user.login, token });
   })(req, res);
 });
