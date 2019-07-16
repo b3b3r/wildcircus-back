@@ -10,6 +10,27 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 
+router.get('/api/theme', (req, res) => {
+  if (req.query.theme) {
+    const { theme } = req.query;
+
+    connection.query('SELECT * FROM theme WHERE name LIKE ?', theme, (err, results) => {
+      if (err) {
+        res.status(500).send('Erreur lors de l\'import de données');
+      } else {
+        res.json(results);
+      }
+    });
+  } else {
+    connection.query('SELECT * FROM theme', (err, results) => {
+      if (err) {
+        res.status(500).send('Erreur lors de l\'import de données');
+      } else {
+        res.json(results);
+      }
+    });
+  }
+});
 
 router.post('/api/theme', (req, res) => {
   const formData = req.body;
