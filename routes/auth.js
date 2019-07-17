@@ -22,6 +22,8 @@ passport.use('local', new LocalStrategy({
       } if (results.length === 0) {
         return done(null, false);
       } if (bcrypt.compareSync(password, results[0].password)) {
+        console.log(password);
+        
         const user = {
           login: results[0].login,
         };

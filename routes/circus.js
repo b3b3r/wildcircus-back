@@ -46,6 +46,8 @@ router.post('/circus', (req, res) => {
 router.put('/circus/:id', (req, res) => {
   const { id } = req.params;
   const formData = req.body;
+  console.log(formData);
+  
 
   connection.query('UPDATE circus SET ? WHERE id = ?', [formData, id], (err) => {
     if (err) {
