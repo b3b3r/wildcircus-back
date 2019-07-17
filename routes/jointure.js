@@ -12,7 +12,7 @@ router.use(bodyParser.urlencoded({
 
 router.get('/theme/circus', (req, res) => {
   connection.query(
-    `SELECT circus.name, theme.name
+    `SELECT circus.name, circus.price, circus.place, circus.url, theme.name AS theme
     FROM circus 
     JOIN theme_circus ON circus.id = theme_circus.id_circus
     JOIN theme ON theme_circus.id_theme= theme.id`,
