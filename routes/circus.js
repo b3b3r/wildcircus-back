@@ -55,8 +55,10 @@ router.put('/circus', (req, res) => {
   });
 });
 
-router.delete('/circus', (req, res) => {
-  const { id } = req.query;
+router.delete('/circus/:id', (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  
   connection.query('DELETE FROM circus WHERE id=?', [id], (err) => {
     if (err) {
       console.log(err);
