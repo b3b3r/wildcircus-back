@@ -7,6 +7,7 @@ const cors = require('cors');
 const circus = require('./routes/circus');
 const theme = require('./routes/theme');
 const auth = require('./routes/auth');
+const jointure = require('./routes/jointure');
 
 const indexRouter = require('./routes/index');
 
@@ -24,6 +25,7 @@ app.use('/api', indexRouter);
 app.use('/api', circus);
 app.use('/api', theme);
 app.use('/api/auth', auth);
+app.use('/api', jointure);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
