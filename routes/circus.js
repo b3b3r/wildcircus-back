@@ -43,10 +43,13 @@ router.post('/circus', (req, res) => {
   });
 });
 
-router.put('/circus/id', (req, res) => {
+router.put('/circus/:id', (req, res) => {
   const { id } = req.params;
   const formData = req.body;
-  connection.query('UPDATE circus SET ? WHERE id = ?', id, [formData, id], (err) => {
+  console.log(formData);
+  console.log(id);
+
+  connection.query('UPDATE circus SET ? WHERE id = ?', [formData, id], (err) => {
     if (err) {
       res.status(500).send('Erreur lors de la modification');
     } else {
