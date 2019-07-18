@@ -10,8 +10,10 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 
-router.get('/theme/circus', (req, res) => {
-  const { theme } = req.query;
+router.get('/theme/circus/:theme', (req, res) => {
+  const { theme } = req.params;
+  console.log(theme);
+  
   if (theme) {
     connection.query(
       `SELECT circus.name, circus.price, circus.place, circus.url, theme.name AS theme
