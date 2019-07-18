@@ -21,6 +21,15 @@ router.get('/theme/circus', (req, res) => {
         console.log(err);
         res.status(500).send('Erreur lors de l\'import de données');
       } else {
+
+        /* const newResults = results;
+        const newData = {};
+        for (let result = 0; result < results.length; result + 1) {
+          newResults.filter(data => data.name === 'Le cirque du soleil');
+          console.log(newResults);
+          
+        } */
+
         res.json(results);
       }
     }
