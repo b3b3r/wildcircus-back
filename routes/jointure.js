@@ -11,8 +11,6 @@ router.use(bodyParser.urlencoded({
 }));
 
 router.get('/theme/circus/', (req, res) => {
-  const { theme } = req.params;
-  console.log(theme);
   connection.query(
     `SELECT circus.name, circus.price, circus.place, circus.url, theme.name AS theme
       FROM circus 
@@ -53,8 +51,6 @@ router.get('/theme/circus/:theme', (req, res) => {
   console.log(theme);
 
   if (theme) {
-    console.log('condition');
-
     connection.query(
       `SELECT circus.name, circus.price, circus.place, circus.url, theme.name AS theme
     FROM circus
@@ -93,8 +89,6 @@ router.get('/theme/circus/:theme', (req, res) => {
     )
   }
   else {
-    console.log('no condition');
-
     connection.query(
       `SELECT circus.name, circus.price, circus.place, circus.url, theme.name AS theme
       FROM circus 
@@ -133,6 +127,8 @@ router.get('/theme/circus/:theme', (req, res) => {
 
 router.post('/theme/circus', (req, res) => {
   const formData = req.body;
+  console.log(formData);
+  
   connection.query('INSERT INTO theme_circus SET ?', formData, (err) => {
     if (err) {
       console.log(err);
